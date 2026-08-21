@@ -52,7 +52,11 @@ func EquilibriumConstant(registry *Registry, reaction EquilibriumReaction, t flo
 // KpCO2Dissociation returns Kp for CO2 <=> CO + 0.5 O2 on the default
 // registry.
 func KpCO2Dissociation(t float64) (float64, error) {
-	return EquilibriumConstant(DefaultRegistry, Reaction1, t)
+	kp, err := EquilibriumConstant(DefaultRegistry, Reaction1, t)
+	if err != nil {
+		return 0, err
+	}
+	return applyKp(kp, t), nil
 }
 
 // KpH2ODissociation returns Kp for H2O <=> H2 + 0.5 O2 on the default
