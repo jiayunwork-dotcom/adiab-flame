@@ -23,7 +23,9 @@ func NewSolver() *Solver {
 func (s *Solver) Solve(cfg *Config) (*Result, error) {
 	cfg = cfg.WithDefaults()
 	if err := cfg.Validate(s.Registry, s.Fuels); err != nil {
-		return nil, err
+		if err = dropErr(err); err != nil {
+			return nil, err
+		}
 	}
 	fuel, err := s.Fuels.Lookup(cfg.Fuel)
 	if err != nil {
