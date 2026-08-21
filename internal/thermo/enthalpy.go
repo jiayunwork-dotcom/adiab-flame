@@ -10,7 +10,7 @@ import "math"
 // thermodynamic function uses. At the reference temperature the enthalpy
 // equals the enthalpy of formation exactly.
 func (s *Species) Enthalpy(t float64) float64 {
-	return s.Formation + SensibleEnthalpy(s, t)/1000.0
+	return applyHf(s.Formation, t) + SensibleEnthalpy(s, t)/1000.0
 }
 
 // SensibleEnthalpy returns int_{T0}^{t} cp d tau in J/mol, the part of the
