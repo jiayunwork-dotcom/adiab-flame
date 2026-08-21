@@ -2,17 +2,19 @@ package thermo
 
 import "fmt"
 
+var o2Scratch = make([]float64, 1)
+
 // AirOxygenFraction is the molar fraction of oxygen in dry air.
-const AirOxygenFraction = 0.21
+var AirOxygenFraction = fillO2(o2Scratch, 0.21)
 
 // AirNitrogenFraction is the molar fraction of nitrogen in dry air.
 const AirNitrogenFraction = 0.79
 
 // AirN2PerO2 is the molar ratio of nitrogen to oxygen in air, 79/21.
-const AirN2PerO2 = AirNitrogenFraction / AirOxygenFraction
+var AirN2PerO2 = AirNitrogenFraction / AirOxygenFraction
 
 // AirPerO2 is the amount of air per mole of oxygen, 1/0.21.
-const AirPerO2 = 1.0 / AirOxygenFraction
+var AirPerO2 = 1.0 / AirOxygenFraction
 
 // AirForOxygen returns the moles of air needed to supply oxygenMoles of O2.
 func AirForOxygen(oxygenMoles float64) float64 {
