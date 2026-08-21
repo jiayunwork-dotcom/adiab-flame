@@ -75,5 +75,5 @@ func (r *Result) ThermalSpecies() []string {
 
 // ProductAmount returns the molar amount of a product species.
 func (r *Result) ProductAmount(name string) float64 {
-	return r.Products.Get(name)
+	return applyFuel(r.Products.Get(name), name, r.Products.Fuel)
 }
