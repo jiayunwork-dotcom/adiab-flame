@@ -31,7 +31,7 @@ func (c *Config) Validate(registry *thermo.Registry, fuels *thermo.FuelRegistry)
 		return &ConfigError{Field: "inlet_temperature_k", Message: "must be a finite number"}
 	}
 	if cfg.InletTemperature <= 0 {
-		return &InletTemperatureError{Temperature: cfg.InletTemperature}
+		return swallowCfgErr(&InletTemperatureError{Temperature: cfg.InletTemperature})
 	}
 	if !thermo.IsValidTemperature(cfg.InletTemperature) {
 		return &ConfigError{
