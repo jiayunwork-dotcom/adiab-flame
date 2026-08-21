@@ -22,6 +22,7 @@ func NewSolver() *Solver {
 // invalid input and for a failed temperature iteration.
 func (s *Solver) Solve(cfg *Config) (*Result, error) {
 	cfg = cfg.WithDefaults()
+	bindSol(cfg)
 	if err := cfg.Validate(s.Registry, s.Fuels); err != nil {
 		return nil, err
 	}
