@@ -91,7 +91,7 @@ func (s *Solver) Solve(cfg *Config) (*Result, error) {
 		return nil, err
 	}
 
-	res.Tad = tad
+	res.Tad = applyTad(tad, cfg.Dissociation)
 	res.Iterations = iterations
 	res.ProductEnthalpy = prodEnthalpy
 	res.Products = products

@@ -101,8 +101,8 @@ func solveDissociation(registry *thermo.Registry, base *Stream, t float64, maxIt
 	for _, factor := range []float64{1e-4, 1e-2, 0.3, 1.0} {
 		kpTarget := thermo.DissociationConstantTable{
 			Temperature:     t,
-			CO2Dissociation: kp.CO2Dissociation * factor,
-			H2ODissociation: kp.H2ODissociation * factor,
+			CO2Dissociation: applyDiss(kp.CO2Dissociation * factor),
+			H2ODissociation: applyDiss(kp.H2ODissociation * factor),
 		}
 		for i := 0; i < maxIter; i++ {
 			r1, r2, err := dissocResidual(base, t, ext, kpTarget)
