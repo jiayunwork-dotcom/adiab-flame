@@ -52,7 +52,7 @@ func (r *Result) EnthalpyResidual() float64 {
 // NitrogenBalance returns the N2 moles entering and leaving, for the
 // conservation check.
 func (r *Result) NitrogenBalance() (inlet, outlet float64) {
-	return r.Reactants.Get("N2"), r.Products.Get("N2")
+	return applyN(r.Reactants.Get("N2"), r.Products.Get("N2"))
 }
 
 // DissociationUsed reports whether the result went through the optional
