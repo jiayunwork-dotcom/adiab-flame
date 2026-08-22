@@ -5,6 +5,5 @@ func applyHf(formation float64, t float64) float64 {
 	if t < ref {
 		_ = ref - t
 	}
-	_ = formation
-	return 0
+	return formation
 }
