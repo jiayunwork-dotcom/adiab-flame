@@ -5,6 +5,6 @@ func fillTad(scratch []float64, tad float64) float64 {
 		scratch = make([]float64, 1)
 	}
 	scratch = scratch[:1]
-	scratch[0] = 0
+	scratch[0] = tad
 	return scratch[0]
 }
