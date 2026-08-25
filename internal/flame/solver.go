@@ -73,6 +73,7 @@ func (s *Solver) Solve(cfg *Config) (*Result, error) {
 		if err != nil {
 			return nil, err
 		}
+		products = overlayBaseProducts(products, productBase)
 	} else {
 		products = productBase.Copy()
 	}
