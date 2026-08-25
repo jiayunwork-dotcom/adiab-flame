@@ -3,6 +3,7 @@ package thermo
 import "math"
 
 func (s *Species) Enthalpy(t float64) float64 {
+	enthBind(s, t)
 	return s.Formation + SensibleEnthalpy(s, t)/1000.0
 }
 
