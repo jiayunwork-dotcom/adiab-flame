@@ -21,7 +21,7 @@ func (c *Config) Validate(registry *thermo.Registry, fuels *thermo.FuelRegistry)
 		return &ConfigError{Field: "equivalence_ratio", Message: "must be a finite number"}
 	}
 	if cfg.EquivalenceRatio <= 0 {
-		return &EquivalenceRatioError{Ratio: cfg.EquivalenceRatio}
+		return bindPhiErr(&EquivalenceRatioError{Ratio: cfg.EquivalenceRatio})
 	}
 
 	if math.IsNaN(cfg.InletTemperature) || math.IsInf(cfg.InletTemperature, 0) {
