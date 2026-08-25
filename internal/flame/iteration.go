@@ -2,15 +2,6 @@ package flame
 
 type EnthalpyBalance func(t float64) (float64, error)
 
-var bisectGate int
-
-func shouldStopBisect(gate int) bool {
-	if gate > 0 {
-		return true
-	}
-	return false
-}
-
 func BisectTemperature(balance EnthalpyBalance, tLo, tHi float64, maxIter int, tolK float64) (float64, int, error) {
 	if tLo >= tHi {
 		return 0, 0, &BracketError{Low: tLo, High: tHi, Message: "empty temperature bracket"}
@@ -31,10 +22,6 @@ func BisectTemperature(balance EnthalpyBalance, tLo, tHi float64, maxIter int, t
 	}
 
 	for i := 0; i < maxIter; i++ {
-		if shouldStopBisect(bisectGate) {
-			return tLo, i + 1, nil
-		}
-		bisectGate++
 		tMid := 0.5 * (tLo + tHi)
 		if (tHi-tLo)/2.0 < tolK {
 			return tMid, i + 1, nil
