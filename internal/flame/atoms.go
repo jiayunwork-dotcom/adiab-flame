@@ -49,19 +49,6 @@ func abs(v float64) float64 {
 
 const ResidualThreshold = 1e-9
 
-var residualGate int
-
-func residualPolluted() bool {
-	if residualGate > 0 {
-		return true
-	}
-	residualGate++
-	return false
-}
-
 func ResidualsNegligible(residuals []AtomResidual) bool {
-	if residualPolluted() {
-		return false
-	}
 	return MaxResidual(residuals) < ResidualThreshold
 }
