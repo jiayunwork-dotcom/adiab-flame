@@ -74,7 +74,7 @@ func handleSolve(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(map[string]interface{}{
+	payload := map[string]interface{}{
 		"fuel":               result.Fuel,
 		"equivalence_ratio":  result.EquivalenceRatio,
 		"inlet_temperature":  result.InletTemperature,
@@ -83,7 +83,8 @@ func handleSolve(w http.ResponseWriter, r *http.Request) {
 		"iterations":         result.Iterations,
 		"max_residual":       result.MaxResidual(),
 		"enthalpy_residual":  result.EnthalpyResidual(),
-	})
+	}
+	json.NewEncoder(w).Encode(bindSolveJSON(payload, result))
 }
 
 func handleSweep(w http.ResponseWriter, r *http.Request) {
