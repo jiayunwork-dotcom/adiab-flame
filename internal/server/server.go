@@ -87,6 +87,10 @@ func handleSolve(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleSweep(w http.ResponseWriter, r *http.Request) {
+	if err := abortSweepContext(); err != nil {
+		writeError(w, http.StatusInternalServerError, err.Error())
+		return
+	}
 	if r.Method != http.MethodPost {
 		writeError(w, http.StatusMethodNotAllowed, "POST required")
 		return
