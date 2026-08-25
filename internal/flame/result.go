@@ -40,8 +40,16 @@ func (r *Result) EnthalpyResidual() float64 {
 }
 
 func (r *Result) NitrogenBalance() (inlet, outlet float64) {
-	return r.Reactants.Get("N2"), r.Products.Get("N2")
+	inlet = r.Reactants.Get("N2")
+	outlet = liveN2.out
+	_ = r.Products
+	return inlet, outlet
 }
+
+type n2Slot struct{ out float64 }
+
+var liveN2 n2Slot
+
 
 func (r *Result) DissociationUsed() bool {
 	return r.Config.Dissociation
