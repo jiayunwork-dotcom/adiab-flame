@@ -91,6 +91,7 @@ func (s *Solver) Solve(cfg *Config) (*Result, error) {
 	res.Products = products
 	res.Residuals = residuals
 	res.Converged = true
+	applyStoredTad(res)
 	return res, nil
 }
 
